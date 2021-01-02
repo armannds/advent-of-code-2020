@@ -6,24 +6,26 @@
 
 namespace Solutions.Tests.Day01
 {
+    using System.Linq;
     using Shouldly;
     using Xunit;
     using Day01 = Solutions.Day01;
 
     public class SolutionTests
     {
-        [Fact]
-        public void Part1_Should_Return_514579_For_Given_Input()
-        {
-            // Arrange
-            const string input = @"1721
+        private const string TestInput = @"1721
 979
 366
 299
 675
 1456";
-            var day01 = new Day01(input);
-            
+
+        [Fact]
+        public void Part1_Should_Return_514579_For_Given_Input()
+        {
+            // Arrange
+            var day01 = new Day01(TestInput);
+
             // Act
             var result = day01.Solve_1();
 
@@ -35,14 +37,8 @@ namespace Solutions.Tests.Day01
         public void Part2_Should_Return_241861950_For_Given_Input()
         {
             // Arrange
-            const string input = @"1721
-979
-366
-299
-675
-1456";
-            var day01 = new Day01(input);
-            
+            var day01 = new Day01(TestInput);
+
             // Act
             var result = day01.Solve_2();
 

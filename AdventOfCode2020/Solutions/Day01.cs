@@ -12,32 +12,30 @@ namespace Solutions
 
     public class Day01 : BaseDay
     {
-        private readonly string input;
         private const int SumTargetNumber = 2020;
+        private readonly int[] numbers;
 
 
         public Day01()
         {
-            this.input = File.ReadAllText(InputFilePath);
+            this.numbers = GetNumbersFromInput(File.ReadAllText(this.InputFilePath));
         }
 
         public Day01(string input)
         {
-            this.input = input;
+            this.numbers = GetNumbersFromInput(input);
         }
 
         public override string Solve_1()
         {
-            var numbers = this.GetNumbersFromInput();
-
-            for (var i = 0; i < numbers.Length - 1; i++)
+            for (var i = 0; i < this.numbers.Length - 1; i++)
             {
-                for (var j = i + 1; j < numbers.Length; j++)
+                for (var j = i + 1; j < this.numbers.Length; j++)
                 {
-                    var sumOfValues = numbers[i] + numbers[j];
+                    var sumOfValues = this.numbers[i] + this.numbers[j];
                     if (sumOfValues == SumTargetNumber)
                     {
-                        return (numbers[i] * numbers[j]).ToString();
+                        return (this.numbers[i] * this.numbers[j]).ToString();
                     }
                 }
             }
@@ -47,18 +45,18 @@ namespace Solutions
 
         public override string Solve_2()
         {
-            var numbers = this.GetNumbersFromInput();
+            // var numbers = this.GetNumbersFromInput();
 
-            for (var i = 0; i < numbers.Length - 2; i++)
+            for (var i = 0; i < this.numbers.Length - 2; i++)
             {
-                for (var j = i + 1; j < numbers.Length - 1; j++)
+                for (var j = i + 1; j < this.numbers.Length - 1; j++)
                 {
-                    for (var k = j + 2; k < numbers.Length; k++)
+                    for (var k = j + 2; k < this.numbers.Length; k++)
                     {
-                        var sumOfValues = numbers[i] + numbers[j] + numbers[k];
+                        var sumOfValues = this.numbers[i] + this.numbers[j] + this.numbers[k];
                         if (sumOfValues == SumTargetNumber)
                         {
-                            return (numbers[i] * numbers[j] * numbers[k]).ToString();
+                            return (this.numbers[i] * this.numbers[j] * this.numbers[k]).ToString();
                         }
                         
                     }
@@ -68,7 +66,7 @@ namespace Solutions
             return "0";
         }
         
-        private int[] GetNumbersFromInput() => this.input
+        private static int[] GetNumbersFromInput(string input) => input
             .Split("\n")
             .Select(_ => _.Trim())
             .Select(int.Parse)
